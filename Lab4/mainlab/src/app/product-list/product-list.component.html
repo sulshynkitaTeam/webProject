@@ -1,0 +1,40 @@
+<h2 class = 'main-word'>ALL Products in Shyngyskhan's Store</h2>
+<div class = 'items' *ngFor = 'let product of products'>
+    <div class="description">
+        <h3>
+          <a [title] = "product.name + ' details'"
+             [routerLink]="['/products', product.id]">
+             {{ product.name }}</a>
+        </h3>
+
+
+
+        <p *ngIf="product.description">
+          <span class="desc">Description:</span> {{ product.description }}
+        </p>
+
+        <p *ngIf="product.rating">
+            <span class="desc">Rating:</span> {{product.rating}}
+        </p>
+
+        <a href="https://wa.me/?text={{product.url}}"  data-action="share/whatsapp/share"
+           target="_blank"> <button  class="btn" type="button">Share To Whatsapp</button></a>
+
+        <a href="https://t.me/share/url?url={{product.url}}&text={{product.name}}}"  data-action="share/whatsapp/share"
+           target="_blank"> <button  class="btn" id="btn-tg" type="button">Share To Telegram</button></a>
+
+        <a [href]="product.url" target="_blank"><button class="btn" id="btn-amazon" type="button">Link To Amazon</button></a>
+
+
+
+        <app-product-alerts [product]="product" (notify)="onNotify()"></app-product-alerts>
+    </div>
+
+    <img class = 'image' [src]="product.image" width="200">
+</div>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
